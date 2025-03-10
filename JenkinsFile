@@ -59,20 +59,10 @@ pipeline {
         }
     }
 
-  post {
-    always {
-        junit '**/jest-results/junit.xml'  // Update path as per your setup
-        publishHTML([
-            allowMissing: false,
-            alwaysLinkToLastBuild: false,
-            keepAll: false,
-            reportDir: 'playwright-report',  // Directory where report is stored
-            reportFiles: 'index.html',      // Name of the HTML report file
-            reportName: 'Playwright HTML Report',
-            reportTitles: '',
-            useWrapperFileDirectly: true
-        ])
+    post {
+        always {
+            junit 'jest-results/junit.xml'
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+        }
     }
-}
-
 }
